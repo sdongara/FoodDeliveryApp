@@ -1,0 +1,27 @@
+package com.cg.fda.repository;
+import com.cg.fda.domain.FoodCart;
+import com.cg.fda.domain.Order;
+import org.junit.Assert;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.junit4.SpringRunner;
+@RunWith(SpringRunner.class)
+@DataJpaTest
+public class FoodCartRepositoryTest {
+	@Autowired
+	private FoodCartRepository foodCartRepository;
+	@Test
+	void testFindByFoodCartId() {
+		FoodCart foodcart=new FoodCart();
+		//payment.setId(1);
+		foodcart.setFoodCartId(1);
+	    foodcart.setRestaurantName("Chillies");
+	    foodcart.setFoodItemName("Pizza");
+	    foodcart.setFoodItemQuantity("7");
+	    int foodcartId=foodcart.getFoodCartId();
+
+	    Assert.assertTrue(foodCartRepository.findById(3).isEmpty());   	}
+
+}

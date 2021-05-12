@@ -1,0 +1,30 @@
+package com.cg.fda.repository;
+import com.cg.fda.domain.FoodCart;
+import com.cg.fda.domain.Order;
+import com.cg.fda.service.AdminService;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.Assert;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.junit4.SpringRunner;
+@RunWith(SpringRunner.class)
+@DataJpaTest
+public class FoodCartRepositoryTest {
+	@Autowired
+	private FoodCartRepository foodcartRepository;
+	@Test
+	void createFoodCart() {
+	    FoodCart foodcart=new FoodCart();
+	    foodcart.setFoodCartId(1);
+	    foodcart.setRestaurantName("Chillies");
+	    foodcart.setFoodItemName("Pizza");
+	    foodcart.setFoodItemQuantity("7");
+	              Mockito.when(foodcartRepository.save(foodcart)).thenReturn(foodcart);
+	    assertThat(adminService.createFoodCart(foodcart)).isEqualTo(foodcart);
+	}
+}
